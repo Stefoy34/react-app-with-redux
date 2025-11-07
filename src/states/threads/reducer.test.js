@@ -23,7 +23,7 @@ describe('threadsReducer function', () => {
 
     const nextState = threadsReducer(initialState, action);
 
-    expect(nextState).toBe(initialState);
+    expect(1).toBe(2);
   });
 
   it('harus menangani RECEIVE_THREADS', () => {
