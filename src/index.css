@@ -1,0 +1,359 @@
+/* --- 1. Global & Root Variables --- */
+:root {
+  --bg-color: #1a1a1a;
+  --bg-color-light: #242424;
+  --border-color: #444;
+  --text-color: #f0f0f0;
+  --text-color-light: #aaa;
+  --primary-color: #61dafb; /* React Blue */
+  --vote-color: #ff4500; /* Red-Orange */
+  --voted-color: #0d1117; /* GitHub Dark */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%; /* Membuat semua avatar bulat */
+}
+
+h1, h2, h3 {
+  margin-bottom: 1rem;
+}
+
+/* --- 2. Main Layout (App.jsx) --- */
+.App {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+main {
+  padding-top: 20px;
+}
+
+.app-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* --- 3. Generic Forms (Login, Register, Create, Comment) --- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--bg-color-light);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+button[type="submit"] {
+  padding: 0.75rem;
+  background-color: var(--primary-color);
+  color: var(--voted-color);
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+button[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+.login-page p,
+.register-page p {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* --- 4. Navigation (Navigation.jsx) --- */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navigation a {
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.nav-authed, .nav-guest {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-authed span {
+  margin-right: 0.5rem;
+  color: var(--text-color-light);
+}
+
+.nav-authed button {
+  padding: 0.5rem 1rem;
+  background-color: var(--vote-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.nav-authed button:hover {
+  opacity: 0.8;
+}
+
+/* --- 5. Thread List (ThreadItem.jsx) --- */
+.thread-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.thread-item {
+  background-color: var(--bg-color-light);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.thread-item:hover {
+  border-color: var(--primary-color);
+}
+
+.thread-item__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.thread-item__header img {
+  width: 24px;
+  height: 24px;
+}
+
+.thread-item__body h3 {
+  margin-bottom: 0.5rem;
+}
+
+.thread-item__body p {
+  font-size: 0.9rem;
+  color: var(--text-color-light);
+  line-height: 1.5;
+}
+
+.thread-item__footer {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-color-light);
+}
+
+/* --- 6. Vote Buttons (Kriteria Inti) --- */
+.vote-button {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 16px; /* Pill shape */
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vote-button:hover {
+  border-color: var(--primary-color);
+}
+
+/* Kriteria 2: Indikasi Vote */
+.vote-button.voted {
+  background-color: var(--primary-color);
+  color: var(--voted-color);
+  border-color: var(--primary-color);
+  font-weight: bold;
+}
+
+.vote-count {
+  font-weight: bold;
+}
+
+/* --- 7. Detail Page (DetailPage.jsx) --- */
+.detail-page .thread-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-page .thread-header__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.detail-page .thread-header__meta img {
+  width: 32px;
+  height: 32px;
+}
+
+.detail-page .thread-body {
+  margin: 2rem 0;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  /* Styling untuk konten dari dangerouslySetInnerHTML */
+  background: var(--bg-color);
+  padding: 1rem;
+}
+
+.thread-body p { margin-bottom: 1rem; }
+.thread-body code { 
+  background: var(--bg-color-light); 
+  padding: 3px 6px; 
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.thread-body pre { 
+  background: #0d1117; 
+  padding: 1rem; 
+  border-radius: 4px; 
+  overflow-x: auto;
+}
+
+.detail-page .thread-voting {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* --- 8. Comment Section (CommentItem.jsx, CommentForm.jsx) --- */
+.comment-form-container {
+  margin: 2rem 0;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+}
+
+.comments-list h3 {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.comment-item {
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color-light);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.comment-item__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-color-light);
+  margin-bottom: 0.5rem;
+}
+
+.comment-item__header img {
+  width: 20px;
+  height: 20px;
+}
+
+.comment-item__header strong {
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.comment-item__body {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--border-color);
+}
+.comment-item__body p { margin: 0; } /* Reset margin di dalam komentar */
+
+.comment-item__footer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* --- 9. Leaderboard Page (LeaderboardPage.jsx) --- */
+.leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.leaderboard-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--bg-color-light);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.leaderboard-item__user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.leaderboard-item__user-info img {
+  width: 36px;
+  height: 36px;
+}
+
+.leaderboard-item__score strong {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
