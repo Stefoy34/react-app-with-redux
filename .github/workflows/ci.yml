@@ -26,14 +26,6 @@ jobs:
         with:
           # Gunakan versi Node yang stabil (sesuai dengan environment Anda)
           node-version: 18
-      
-      # --- TAMBAHKAN BLOK INI ---
-      # Ini akan menginstal library sistem yang dibutuhkan oleh 'node-canvas'
-      - name: Install system dependencies for canvas
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
-      # ---------------------------
 
       # Langkah 3: Menginstal semua dependensi (npm install)
       - name: Install dependencies
