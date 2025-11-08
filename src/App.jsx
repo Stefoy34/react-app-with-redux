@@ -1,3 +1,6 @@
+// src/App.jsx
+
+// Perubahan kecil untuk memicu CI
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
