@@ -1,42 +1,38 @@
 # .github/workflows/ci.yml
 
-name: Forum App CI
+name: Continuous Integration
 
 on:
-  push:
-    # Sesuaikan 'master' dengan nama branch utama Anda (bisa 'main')
-    branches: [ "master" ]
   pull_request:
     # Sesuaikan 'master' dengan nama branch utama Anda (bisa 'main')
     branches: [ "master" ]
 
 jobs:
-  build_and_test:
-    # Job ini akan berjalan di server Ubuntu
+  automation-test-job:
     runs-on: ubuntu-latest
 
     steps:
-      # Langkah 1: Mengambil kode Anda dari repository
+      # 1. Mengambil kode Anda (dari contoh Dicoding)
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Langkah 2: Menyiapkan environment Node.js
-      - name: Setup Node.js
+      # 2. Menyiapkan Node.js (diadaptasi dari contoh Dicoding)
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          # Gunakan versi Node yang stabil (sesuai dengan environment Anda)
           node-version: 18
 
-      # Langkah 3: Menginstal semua dependensi (npm install)
-      - name: Install dependencies
-        run: npm install
+      # 3. (PENTING) Menginstal library sistem yang hilang
+      # Ini akan memperbaiki 'TypeError' (jsdom/canvas) DAN error Cypress
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev \
+            libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
 
-      # Langkah 4: Menjalankan unit test (Vitest)
-      # Ini akan menjalankan "vitest" sesuai package.json
-      - name: Run unit tests
-        run: npm test
-
-      # Langkah 5: Membangun proyek (Vite build)
-      # Ini memastikan aplikasi Anda bisa di-build tanpa error
-      - name: Build project
-        run: npm run build
+      # 4. npm install dan test (dari contoh Dicoding)
+      - name: npm install and test
+        run: |
+          npm install
+          npm run ci:test
