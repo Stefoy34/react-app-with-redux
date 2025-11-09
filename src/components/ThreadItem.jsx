@@ -88,7 +88,7 @@ const threadShape = PropTypes.shape({
 });
 
 ThreadItem.propTypes = {
-  authUser: userShape, 
+  authUser: userShape,
   user: userShape.isRequired,
   thread: threadShape.isRequired,
 };

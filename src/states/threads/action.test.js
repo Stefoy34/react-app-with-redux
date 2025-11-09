@@ -1,3 +1,5 @@
+/* globals global */
+
 /*
  * Skenario Pengujian untuk Thunks (threads)
  *
@@ -92,11 +94,11 @@ describe('Thunks (threads)', () => {
       expect(dispatch).toHaveBeenCalledWith(
         upVoteThreadActionCreator({ threadId: 'thread-1', userId: 'user-1' }),
       );
-      
+
       expect(api.upVoteThread).toHaveBeenCalledWith('thread-1');
-      
+
       expect(global.alert).toHaveBeenCalledWith(fakeError.message);
-      
+
       expect(dispatch).toHaveBeenCalledWith(
         neutralizeVoteThreadActionCreator({ threadId: 'thread-1', userId: 'user-1' }),
       );

@@ -42,7 +42,7 @@ describe('Komponen <LoginPage />', () => {
     const store = configureStore({
       reducer: (state = {}) => state,
     });
-    
+
     useDispatch.mockReturnValue(mockDispatch);
 
     render(
