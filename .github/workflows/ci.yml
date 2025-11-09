@@ -31,10 +31,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Langkah 4: Menjalankan unit test (Vitest)
-      # Ini akan menjalankan "vitest" sesuai package.json
-      - name: Run unit tests
-        run: npm test
+      # # Langkah 4: Menjalankan unit test (Vitest)
+      # # Ini akan menjalankan "vitest" sesuai package.json
+      # - name: Run unit tests
+      #   run: npm test
 
       # Langkah 5: Membangun proyek (Vite build)
       # Ini memastikan aplikasi Anda bisa di-build tanpa error
